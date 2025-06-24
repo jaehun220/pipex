@@ -52,11 +52,11 @@ void	first_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 {
 	arg->infile = open(argv[1], O_RDONLY, 0644);
 	if (arg->infile == -1)
-		error_print("infile open error");
+		error_msg("infile open error");
 	arg->order1 = check_cmd(arg->path, arg->cmd1[0]);
 	close (fd[0]);
 	if (dup2(fd[1], 1) == -1)
-		error_print("dup error");
+		error_msg("dup error");
 	close (fd[1]);
 	close (arg->infile);
 	if (execve(arg->order1, arg->cmd1, envp) == -1)
@@ -71,13 +71,13 @@ void	second_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 {
 	arg->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (arg->outfile == -1)
-		error_print("inline open error");
+		error_msg("inline open error");
 	arg->order2 = check_cmd(arg->path, arg->cmd2[0]);
 	close (fd[1]);
 	if (dup2(arg->outfile, 1) == -1)
-		error_print("dup error");
+		error_msg("dup error");
 	if (dup2(fd[0], 0) == -1)
-		error_print("dup error");
+		error_msg("dup error");
 	close (fd[0]);
 	close(arg->outfile);
 	if (execve(arg->order2, arg->cmd2, envp) == -1)
@@ -97,14 +97,14 @@ void	pipe_maker(t_arg *arg, char *argv[], char *envp[])
 	pipe(fd);
 	pid1 = fork();
 	if (pid1 == -1)
-		error_print("pid error");
+	error_msg("pid error");
 	else if (pid1 == 0)
 		first_work(arg, fd, argv, envp);
 	else
 	{
 		pid2 = fork();
 		if (pid2 == -1)
-			error_print("pid error");
+			error_msg("pid error");
 		else if (pid2 == 0)
 			second_work(arg, fd, argv, envp);
 		else
