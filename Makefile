@@ -14,7 +14,7 @@ NAME = pipex
 
 SRCS = pipex.c split.c utils.c
 
-OBJS = $(SRCS: %.c=%.o)
+OBJS = $(SRCS:%.c=%.o)
 
 CFLAGS = -Wall -Werror -Wextra
 

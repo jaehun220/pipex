@@ -94,15 +94,8 @@ char	**split2(char *s, char c)
 	return (result);
 }
 
-void	allfree(char **all)
+void	error_print(char *s)
 {
-	int	i;
-
-	i = 0;
-	while (all[i])
-	{
-		free(all[i]);
-		i++;
-	}
-	free(all);
+	perror(s);
+	exit(1);
 }

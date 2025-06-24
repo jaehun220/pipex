@@ -12,6 +12,19 @@
 
 #include "pipex.h"
 
+void	allfree(char **all)
+{
+	int	i;
+
+	i = 0;
+	while (all[i])
+	{
+		free(all[i]);
+		i++;
+	}
+	free(all);
+}
+
 int	main(int argc, char *argv[], char *envp[])
 {
 	t_arg	all;
