@@ -10,21 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jaehlee <jaehlee@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/24 16:57:35 by jaehlee           #+#    #+#             */
-/*   Updated: 2025/06/24 16:57:35 by jaehlee          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "pipex.h"
 
-char	**path_maker(char  *envp[])
+char	**path_maker(char *envp[])
 {
 	int	i;
 
@@ -57,7 +45,7 @@ char	*check_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
-void	first_work(t_arg *arg, int *fd,  char *argv[],  char *envp[])
+void	first_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 {
 	arg->infile = open(argv[1], O_RDONLY, 0644);
 	if (arg->infile == -1)
@@ -72,7 +60,7 @@ void	first_work(t_arg *arg, int *fd,  char *argv[],  char *envp[])
 		perror("exec error");
 }
 
-void	second_work(t_arg *arg, int *fd,  char *argv[],  char *envp[])
+void	second_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 {
 	arg->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (arg->outfile == -1)
@@ -89,7 +77,7 @@ void	second_work(t_arg *arg, int *fd,  char *argv[],  char *envp[])
 		perror("exec error");
 }
 
-void	pipe_maker(t_arg *arg, char  *argv[], char  *envp[])
+void	pipe_maker(t_arg *arg, char *argv[], char *envp[])
 {
 	pid_t	pid1;
 	pid_t	pid2;
