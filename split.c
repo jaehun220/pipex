@@ -12,27 +12,7 @@
 
 #include "pipex.h"
 
-static char	*make_char(char *s, int n)
-{
-	int		i;
-	char	*word;
-
-	i = 0;
-	word = 0;
-	if (n == 0)
-		return (NULL);
-	word = (char *)malloc(sizeof(char) * (n + 2));
-	while (i < n)
-	{
-		word[i] = s[i];
-		i++;
-	}
-	word[i] = '/';
-	word[i + 1] = '\0';
-	return (word);
-}
-
-static char	**free_all(char **list)
+char	**free_all(char **list)
 {
 	int		i;
 
@@ -44,6 +24,28 @@ static char	**free_all(char **list)
 	}
 	free(list);
 	return (NULL);
+}
+
+static char	*make_char(char *s, int n)
+{
+	int		i;
+	char	*word;
+
+	i = 0;
+	word = 0;
+	if (n == 0)
+		return (NULL);
+	word = (char *)malloc(sizeof(char) * (n + 2));
+	if (!word)
+		return (NULL);
+	while (i < n)
+	{
+		word[i] = s[i];
+		i++;
+	}
+	word[i] = '/';
+	word[i + 1] = '\0';
+	return (word);
 }
 
 static int	word_count(char *s, char c)
@@ -94,8 +96,8 @@ char	**split2(char *s, char c)
 	return (result);
 }
 
-void	error_print(char *s)
+void	error_msg(char *s, int i)
 {
 	perror(s);
-	exit(1);
+	exit(i);
 }
