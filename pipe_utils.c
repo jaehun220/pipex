@@ -67,7 +67,7 @@ void	first_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 	}
 	if (dup2(arg->infile, 0) == -1)
 		error_msg("dup error", 1);
-	if (dup2(fd[1], 1) == -1)ㅋ
+	if (dup2(fd[1], 1) == -1)
 		error_msg("dup error", 1);
 	close (fd[1]);
 	close (arg->infile);
