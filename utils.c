@@ -52,6 +52,7 @@ char	*check_cmd(char **path, char *cmd)
 
 void	first_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 {
+	close (fd[0]);
 	arg->infile = open(argv[1], O_RDONLY);
 	if (arg->infile == -1)
 		error_msg("infile open error", 1);
@@ -64,7 +65,6 @@ void	first_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 		arg->cmd1 = free_all(arg->cmd1);
 		error_msg("order error", 127);
 	}
-	close (fd[0]);
 	if (dup2(arg->infile, 0) == -1)
 		error_msg("dup error", 1);
 	if (dup2(fd[1], 1) == -1)
@@ -80,7 +80,8 @@ void	first_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 
 void	second_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 {
-	arg->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC);
+	close (fd[1]);
+	arg->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (arg->outfile == -1)
 		error_msg("outfile open error", 1);
 	arg->cmd2 = ft_split(argv[3], ' ');
@@ -92,7 +93,6 @@ void	second_work(t_arg *arg, int *fd, char *argv[], char *envp[])
 		arg->cmd2 = free_all(arg->cmd2);
 		error_msg("order error", 127);
 	}
-	close (fd[1]);
 	if (dup2(arg->outfile, 1) == -1)
 		error_msg("dup error", 1);
 	if (dup2(fd[0], 0) == -1)
