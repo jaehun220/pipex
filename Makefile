@@ -12,7 +12,7 @@
 
 NAME = pipex
 
-SRCS = pipex.c split.c utils.c
+SRCS = pipex.c utils.c pipe_utils.c
 
 OBJS = $(SRCS:%.c=%.o)
 
