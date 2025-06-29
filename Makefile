@@ -30,7 +30,7 @@ clean :
 	$(MAKE) -C ./libft clean
 	rm -f $(OBJS)
 
-fclean :
+fclean : clean
 	$(MAKE) -C ./libft fclean
 	rm -f $(NAME)
 
