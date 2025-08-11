@@ -83,6 +83,8 @@ Makefile은 불필요한 재링크를 하지 않아야 합니다.
 
 ### 보너스 없음
 
+---
+
 ### 📦 제출 및 동료 평가 (Submission and peer-evaluation)
 과제는 지정된 Git 저장소에 제출
 
