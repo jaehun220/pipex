@@ -68,6 +68,8 @@ unlink, wait, waitpid`
 ./pipex infile "grep a1" "wc -w" outfile
 # 동일 동작: < infile grep a1 | wc -w > outfile
 ```
+---
+
 ### 📋 요구 사항 (Requirements)
 Makefile은 불필요한 재링크를 하지 않아야 합니다.
 
@@ -76,6 +78,8 @@ Makefile은 불필요한 재링크를 하지 않아야 합니다.
 메모리 누수가 없어야 합니다.
 
 오류 처리 방식은 실제 셸 명령 < file1 cmd1 | cmd2 > file2와 동일하게 구현.
+
+---
 
 ### 보너스 없음
 
