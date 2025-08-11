@@ -1,4 +1,4 @@
 /42_pipex_tester
 *.o
-.vscode
+/.vscode
 .gitignore
